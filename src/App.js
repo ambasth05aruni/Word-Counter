@@ -4,6 +4,12 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import About from './components/About';
 import React,{useState} from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Link,
+} from "react-router-dom";
 
 
 function App() {
@@ -52,16 +58,15 @@ const pinkToggleMode=()=>{
 
   return (
 <>
-<Navbar title= "React Tutorial" mode={mode} toggleMode={toggleMode} pinkToggleMode={pinkToggleMode}/>
+<BrowserRouter>
+<Navbar title= "Word Counter" mode={mode} toggleMode={toggleMode} pinkToggleMode={pinkToggleMode}/>
 <div div className="container my-3">
-<TextForm heading="Enter the text to Analyse."/>
+  <Routes>
+  <Route  exact path="/About" element={<About />} />
+  <Route exact path="/" element={<TextForm heading="Enter the text to Analyse."/>}/>
+</Routes>
 </div>
-{/* <div>
-  <hr/>
-</div> */}
-{/* <div className="container">
-  <About/>
-</div> */}
+</BrowserRouter>
 </>
   );
 }
